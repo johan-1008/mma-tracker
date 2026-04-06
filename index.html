@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MMA Tracker PRO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1 id="mainTitle">MMA Tracker PRO</h1>
+      <button id="themeToggle">🌙</button>
+    </header>
+
+    <section class="form-section">
+      <select id="type">
+        <option value="Striking">Striking</option>
+        <option value="BJJ">BJJ</option>
+        <option value="MMA">MMA</option>
+      </select>
+
+      <input type="number" id="duration" placeholder="Duración (min)">
+      <input type="date" id="date">
+
+      <button id="addBtn">Agregar</button>
+    </section>
+
+    <section class="filter">
+      <select id="filter">
+        <option value="all">Todos</option>
+        <option value="Striking">Striking</option>
+        <option value="BJJ">BJJ</option>
+        <option value="MMA">MMA</option>
+      </select>
+    </section>
+
+    <section class="stats">
+      <div id="stats"></div>
+    </section>
+
+    <section class="chart-container">
+      <canvas id="chart"></canvas>
+    </section>
+
+    <section class="history">
+      <h2>Historial</h2>
+      <div id="history"></div>
+    </section>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
