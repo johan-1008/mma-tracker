@@ -1,52 +1,177 @@
+
+<!--hoola, este es mi codigo de mma tracker, es algo que hice para aprender a usar html css y js -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MMA Tracker PRO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  
+  <div class="noise"></div>
+  
+  <div class="grid-bg"></div>
+
   <div class="container">
 
+   
     <header>
-      <h1 id="mainTitle">MMA Tracker PRO</h1>
-      <button id="themeToggle">🌙</button>
+      <div class="header-left">
+        <span class="logo-badge">PRO</span>
+        <h1 id="mainTitle">MMA<br>TRACKER</h1>
+      </div>
+      <div class="header-right">
+        <div class="header-meta" id="headerMeta">
+          <span class="meta-label">SESIONES</span>
+          <span class="meta-value" id="headerTotal">0</span>
+        </div>
+        <button id="themeToggle" aria-label="Cambiar tema">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+      </div>
     </header>
 
+    
+    <div class="discipline-bar" id="disciplineBar">
+      <div class="disc-item" data-type="Striking">
+        <span class="disc-icon">🥊</span>
+        <span class="disc-name">STRIKING</span>
+        <span class="disc-min" id="min-Striking">0 min</span>
+      </div>
+      <div class="disc-divider"></div>
+      <div class="disc-item" data-type="BJJ">
+        <span class="disc-icon">🥋</span>
+        <span class="disc-name">BJJ</span>
+        <span class="disc-min" id="min-BJJ">0 min</span>
+      </div>
+      <div class="disc-divider"></div>
+      <div class="disc-item" data-type="MMA">
+        <span class="disc-icon">🏆</span>
+        <span class="disc-name">MMA</span>
+        <span class="disc-min" id="min-MMA">0 min</span>
+      </div>
+      <div class="disc-divider"></div>
+      <div class="disc-item" data-type="Wrestling">
+        <span class="disc-icon">⚡</span>
+        <span class="disc-name">WRESTLING</span>
+        <span class="disc-min" id="min-Wrestling">0 min</span>
+      </div>
+      <div class="disc-divider"></div>
+      <div class="disc-item" data-type="Cardio">
+        <span class="disc-icon">🔥</span>
+        <span class="disc-name">CARDIO</span>
+        <span class="disc-min" id="min-Cardio">0 min</span>
+      </div>
+    </div>
+
+   
     <section class="form-section">
-      <select id="type">
-        <option value="Striking">Striking</option>
-        <option value="BJJ">BJJ</option>
-        <option value="MMA">MMA</option>
-      </select>
+      <div class="form-heading">
+        <span class="form-tag">NUEVA SESIÓN</span>
+      </div>
 
-      <input type="number" id="duration" placeholder="Duración (min)">
-      <input type="date" id="date">
+      <div class="form-grid">
+        <div class="form-field">
+          <label>DISCIPLINA</label>
+          <div class="custom-select-wrapper">
+            <select id="type">
+              <option value="Striking">🥊 Striking</option>
+              <option value="BJJ">🥋 BJJ</option>
+              <option value="MMA">🏆 MMA</option>
+              <option value="Wrestling">⚡ Wrestling</option>
+              <option value="Cardio">🔥 Cardio</option>
+            </select>
+          </div>
+        </div>
 
-      <button id="addBtn">Agregar</button>
+        <div class="form-field">
+          <label>DURACIÓN (MIN)</label>
+          <input type="number" id="duration" placeholder="60" min="1" max="300">
+        </div>
+
+        <div class="form-field">
+          <label>FECHA</label>
+          <input type="date" id="date">
+        </div>
+
+        <div class="form-field">
+          <label>INTENSIDAD</label>
+          <div class="intensity-selector">
+            <button class="intensity-btn active" data-level="1" title="Baja">💤</button>
+            <button class="intensity-btn" data-level="2" title="Media">💪</button>
+            <button class="intensity-btn" data-level="3" title="Alta">🔥</button>
+          </div>
+        </div>
+      </div>
+
+      <button id="addBtn" class="add-btn">
+        <span class="add-btn-icon">+</span>
+        <span>AGREGAR SESIÓN</span>
+      </button>
     </section>
 
-    <section class="filter">
-      <select id="filter">
-        <option value="all">Todos</option>
-        <option value="Striking">Striking</option>
-        <option value="BJJ">BJJ</option>
-        <option value="MMA">MMA</option>
-      </select>
+    
+    <section class="stats-row" id="statsRow">
+      <div class="stat-card" id="statTotal">
+        <span class="stat-number">0</span>
+        <span class="stat-label">SESIONES</span>
+      </div>
+      <div class="stat-card accent" id="statMinutes">
+        <span class="stat-number">0</span>
+        <span class="stat-label">MINUTOS</span>
+      </div>
+      <div class="stat-card" id="statAvg">
+        <span class="stat-number">0</span>
+        <span class="stat-label">PROMEDIO</span>
+      </div>
+      <div class="stat-card" id="statStreak">
+        <span class="stat-number">0</span>
+        <span class="stat-label">RACHA (DÍAS)</span>
+      </div>
     </section>
 
-    <section class="stats">
-      <div id="stats"></div>
+    
+    <section class="chart-section">
+      <div class="section-header">
+        <span class="section-tag">PROGRESO</span>
+        <div class="chart-toggle">
+          <button class="ct-btn active" data-chart="bar" id="barBtn">BARRAS</button>
+          <button class="ct-btn" data-chart="line" id="lineBtn">LÍNEA</button>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chart"></canvas>
+      </div>
     </section>
 
-    <section class="chart-container">
-      <canvas id="chart"></canvas>
-    </section>
-
-    <section class="history">
-      <h2>Historial</h2>
-      <div id="history"></div>
+    
+    <section class="history-section">
+      <div class="section-header">
+        <span class="section-tag">HISTORIAL</span>
+        <div class="filter-wrap">
+          <select id="filter" class="filter-select">
+            <option value="all">TODOS</option>
+            <option value="Striking">STRIKING</option>
+            <option value="BJJ">BJJ</option>
+            <option value="MMA">MMA</option>
+            <option value="Wrestling">WRESTLING</option>
+            <option value="Cardio">CARDIO</option>
+          </select>
+        </div>
+      </div>
+      <div id="history" class="history-list"></div>
+      <div class="empty-state" id="emptyState">
+        <span class="empty-icon">🥋</span>
+        <p>No hay sesiones aún.<br>¡Empieza tu entrenamiento!</p>
+      </div>
     </section>
 
   </div>
